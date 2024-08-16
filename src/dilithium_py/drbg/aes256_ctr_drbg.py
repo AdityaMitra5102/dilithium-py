@@ -1,5 +1,5 @@
 import os
-from Crypto.Cipher import AES
+from ..pyaes import AES
 from typing import Optional
 from ..utilities.utils import xor_bytes
 
@@ -78,7 +78,7 @@ class AES256_CTR_DRBG:
         Section 10.2.1.2, Page 51 (CTR_DRBG_Update)
         """
         tmp = b""
-        cipher = AES.new(self.key, AES.MODE_ECB)
+        cipher = AES(self.key)
 
         # Collect bytes from AES ECB
         while len(tmp) != self.seed_length:
@@ -122,7 +122,7 @@ class AES256_CTR_DRBG:
 
         # Collect bytes!
         tmp = b""
-        cipher = AES.new(self.key, AES.MODE_ECB)
+        cipher = AES(self.key, AES)
         while len(tmp) < num_bytes:
             self.__increment_counter()
             tmp += cipher.encrypt(self.V)

@@ -1,10 +1,7 @@
 import os
 from ..modules.modules import ModuleDilithium
 
-try:
-    from xoflib import shake256
-except ImportError:
-    from ..shake.shake_wrapper import shake256
+from ..shake.shake_wrapper import shake256
 
 
 class ML_DSA:
